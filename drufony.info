@@ -1,0 +1,5 @@
+name = Drufony
+core = 7.x
+package = Drufony
+files[] = src/Drufony.php
+files[] = src/DrupalKernel.php

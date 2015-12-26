@@ -1,0 +1,15 @@
+{
+    "name": "drufony/drufony-module",
+    "license": "MIT",
+    "type": "drupal-module",
+    "description": "",
+    "autoload": {
+        "psr-0": {"":"src"}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "7.0.x-dev"
+        },
+        "installer-name": "drufony"
+    }
+}

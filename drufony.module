@@ -1,0 +1,48 @@
+<?php
+/**
+ * @file
+ * Drufony module
+ */
+
+/**
+ * Implements hook_boot().
+ */
+function drufony_boot() {
+  $kernel = new DrupalKernel('dev', TRUE);
+  $kernel->boot();
+  $container = $kernel->getContainer();
+  Drufony::setContainer($container);
+}
+
+
+/**
+ * Implements hook_flush_caches().
+ */
+function drufony_flush_caches() {
+  if (is_dir('var://')) {
+    $dir = dir('var://');
+    while (($entry = $dir->read()) !== FALSE) {
+      if ($entry == '.' || $entry == '..') {
+        continue;
+      }
+      $entry_path = 'var://' . $entry;
+      file_unmanaged_delete_recursive($entry_path);
+    }
+    $dir->close();
+  }
+  return array();
+}
+
+/**
+ * Implements hook_stream_wrappers().
+ */
+function drufony_stream_wrappers() {
+  return array(
+    'var' => array(
+      'name' => t('Variable files'),
+      'class' => 'Drufony\\Bridge\\DrupalVarStreamWrapper',
+      'description' => t('Temporary local files for upload and previews.'),
+      'type' => STREAM_WRAPPERS_LOCAL_HIDDEN,
+    ),
+  );
+}
