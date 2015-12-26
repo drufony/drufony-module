@@ -6,6 +6,9 @@
     "autoload": {
         "psr-0": {"":"src"}
     },
+    "require": {
+        "bangpound/kernel-traits": "~1.0@dev"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "7.0.x-dev"
