@@ -74,6 +74,21 @@ class DrupalKernel extends Kernel
     }
 
     /**
+     * Returns the kernel parameters.
+     *
+     * @return array An array of kernel parameters
+     */
+    protected function getKernelParameters()
+    {
+        $parameters = parent::getKernelParameters();
+        $parameters['kernel.drupal_root'] = DRUPAL_ROOT;
+        $parameters['kernel.conf_path'] = conf_path();
+        $parameters['kernel.conf_dir'] = basename(conf_path());
+
+        return $parameters;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function discoverServiceProviders()
