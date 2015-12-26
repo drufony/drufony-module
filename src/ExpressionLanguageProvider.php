@@ -18,6 +18,11 @@ class ExpressionLanguageProvider implements ExpressionFunctionProviderInterface
           }, function (array $variables, $arg1, $arg2) {
               return array_merge($arg1, $arg2);
           }),
+          new ExpressionFunction('variable_get', function ($arg1, $arg2) {
+              return sprintf('variable_get(%s, %s)', $arg1, $arg2);
+          }, function (array $variables, $arg1, $arg2) {
+              return variable_get($arg1, $arg2);
+          }),
         );
     }
 }
