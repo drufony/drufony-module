@@ -7,7 +7,6 @@ use Symfony\Component\HttpKernel\Kernel;
 class DrupalKernel extends Kernel
 {
     use Bangpound\Kernel\YamlEnvironmentTrait;
-    use Bangpound\Kernel\ClassBasedNameTrait;
 
     /**
      * Returns an array of bundles to register.
