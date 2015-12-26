@@ -1,0 +1,4 @@
+services:
+    class_loader:
+        class: Composer\Autoload\Classloader
+        synthetic: true
