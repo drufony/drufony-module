@@ -133,7 +133,7 @@ class DrupalKernel extends Kernel
      */
     protected function getModuleFileNames()
     {
-        $results = db_query('SELECT name,filename FROM {system} WHERE status = 1 ORDER BY weight ASC, name ASC')->fetchAllAssoc('name');
+        $results = db_query('SELECT name, filename FROM {system} WHERE status = 1 ORDER BY weight ASC, name ASC')->fetchAllAssoc('name');
 
         return array_map(function ($value) {
             return DRUPAL_ROOT.DIRECTORY_SEPARATOR.$value->filename;
