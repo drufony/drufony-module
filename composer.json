@@ -7,7 +7,12 @@
         "psr-0": {"":"src"}
     },
     "require": {
-        "bangpound/kernel-traits": "~1.0@dev"
+        "bangpound/kernel-traits": "~1.0@dev",
+        "symfony/config": "3.0.*",
+        "symfony/dependency-injection": "3.0.*",
+        "symfony/expression-language": "3.0.*",
+        "symfony/http-kernel": "3.0.*",
+        "symfony/yaml": "3.0.*"
     },
     "extra": {
         "branch-alias": {
