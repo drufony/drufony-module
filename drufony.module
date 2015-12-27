@@ -8,13 +8,8 @@
  * Implements hook_boot().
  */
 function drufony_boot() {
-  $autoloader = require_once DRUPAL_ROOT . '/../vendor/autoload.php';
-  $kernel = new DrupalKernel('dev', TRUE);
-  $kernel->loadClassCache();
-  $kernel->boot();
-  $container = $kernel->getContainer();
-  $container->set('class_loader', $autoloader);
-  Drufony::setContainer($container);
+  require_once DRUPAL_ROOT . '/../vendor/autoload.php';
+  Drufony::boot();
 }
 
 
