@@ -12,7 +12,6 @@ function drufony_boot() {
   Drufony::boot();
 }
 
-
 /**
  * Implements hook_flush_caches().
  */
@@ -43,4 +42,10 @@ function drufony_stream_wrappers() {
       'type' => STREAM_WRAPPERS_LOCAL_HIDDEN,
     ),
   );
+}
+
+if (!function_exists('composer_manager_register_autoloader')) {
+  function composer_manager_register_autoloader() {
+    require_once DRUPAL_ROOT . '/../vendor/autoload.php';
+  }
 }
