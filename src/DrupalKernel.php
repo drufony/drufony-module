@@ -63,16 +63,16 @@ class DrupalKernel extends Kernel
 
     public function getCacheDir()
     {
-        require_once DRUPAL_ROOT . '/includes/file.inc';
+        require_once DRUPAL_ROOT.'/includes/file.inc';
 
-        return file_directory_temp() . '/' . $this->getName() . '/cache/' . $this->getEnvironment();
+        return file_directory_temp().'/'.$this->getName().'/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        require_once DRUPAL_ROOT . '/includes/file.inc';
+        require_once DRUPAL_ROOT.'/includes/file.inc';
 
-        return file_directory_temp() . '/' . $this->getName() . '/logs';
+        return file_directory_temp().'/'.$this->getName().'/logs';
     }
 
     /**

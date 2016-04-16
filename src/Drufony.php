@@ -108,8 +108,9 @@ class Drufony
         return static::hasContainer() && static::getContainer()->has($id);
     }
 
-    public static function boot() {
-        $kernel = new DrupalKernel('prod', FALSE);
+    public static function boot()
+    {
+        $kernel = new DrupalKernel('prod', false);
         $kernel->loadClassCache();
         $kernel->boot();
         $container = $kernel->getContainer();
