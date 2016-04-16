@@ -6,8 +6,6 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class DrupalKernel extends Kernel
 {
-    use Bangpound\Kernel\YamlEnvironmentTrait;
-
     /**
      * List of discovered services.yml pathnames.
      *

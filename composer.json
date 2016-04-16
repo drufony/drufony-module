@@ -8,7 +8,6 @@
     },
     "require": {
         "bangpound/composer-constants": "^1.0",
-        "bangpound/kernel-traits": "~1.0@dev",
         "symfony/config": "~2.8|3.0.*",
         "symfony/dependency-injection": "~2.8|3.0.*",
         "symfony/expression-language": "~2.8|3.0.*",
