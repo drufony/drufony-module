@@ -9,8 +9,10 @@
  */
 function drufony_boot() {
   require_once DRUPAL_ROOT . '/../vendor/autoload.php';
+  $class = variable_get('drufony_kernel_class', 'DrupalKernel');
 
-  $kernel = new DrupalKernel('prod', false);
+  /** @var DrupalKernel $kernel */
+  $kernel = new $class('prod', false);
   $kernel->loadClassCache();
   $kernel->boot();
   $container = $kernel->getContainer();
