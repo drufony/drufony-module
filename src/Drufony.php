@@ -107,13 +107,4 @@ class Drufony
         // Check hasContainer() first in order to always return a Boolean.
         return static::hasContainer() && static::getContainer()->has($id);
     }
-
-    public static function boot()
-    {
-        $kernel = new DrupalKernel('prod', false);
-        $kernel->loadClassCache();
-        $kernel->boot();
-        $container = $kernel->getContainer();
-        self::setContainer($container);
-    }
 }

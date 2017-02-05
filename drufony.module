@@ -9,7 +9,12 @@
  */
 function drufony_boot() {
   require_once DRUPAL_ROOT . '/../vendor/autoload.php';
-  Drufony::boot();
+
+  $kernel = new DrupalKernel('prod', false);
+  $kernel->loadClassCache();
+  $kernel->boot();
+  $container = $kernel->getContainer();
+  Drufony::setContainer($container);
 }
 
 /**
