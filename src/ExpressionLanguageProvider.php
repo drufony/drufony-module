@@ -1,5 +1,7 @@
 <?php
 
+namespace Drupal\drufony;
+
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionFunctionProviderInterface;
 

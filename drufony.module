@@ -9,9 +9,13 @@
  */
 function drufony_boot() {
   require_once DRUPAL_ROOT . '/../vendor/autoload.php';
-  $class = variable_get('drufony_kernel_class', 'DrupalKernel');
+  if (!class_exists('Drufony', false)) {
+    class_alias('Drupal\\drufony\\Drufony', 'Drufony');
+  }
 
-  /** @var DrupalKernel $kernel */
+  $class = variable_get('drufony_kernel_class', 'Drupal\\drufony\\DrupalKernel');
+
+  /** @var \Drupal\drufony\DrupalKernel $kernel */
   $kernel = new $class('prod', false);
   $kernel->loadClassCache();
   $kernel->boot();

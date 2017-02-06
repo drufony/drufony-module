@@ -1,5 +1,7 @@
 <?php
 
+namespace Drupal\drufony;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 

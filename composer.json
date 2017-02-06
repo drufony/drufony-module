@@ -4,7 +4,9 @@
     "type": "drupal-module",
     "description": "",
     "autoload": {
-        "psr-0": {"":"src"}
+        "psr-4": {
+            "Drupal\\drufony\\": "src//"
+        }
     },
     "require": {
         "bangpound/composer-constants": "^1.0",
