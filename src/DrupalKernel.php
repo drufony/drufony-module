@@ -38,7 +38,16 @@ class DrupalKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(function (ContainerBuilder $container) use ($loader) {
+        $loader->load($this->drufonyLoaderFactory($loader));
+    }
+
+    /**
+     * @param \Symfony\Component\Config\Loader\LoaderInterface $loader
+     * @return \Closure
+     */
+    protected function drufonyLoaderFactory(LoaderInterface $loader)
+    {
+        return function (ContainerBuilder $container) use ($loader) {
             $container->addExpressionLanguageProvider(new ExpressionLanguageProvider());
             $this->initializeServiceProviders();
 
@@ -51,7 +60,7 @@ class DrupalKernel extends Kernel
             }
 
             $container->addObjectResource($this);
-        });
+        };
     }
 
     public function getName()
