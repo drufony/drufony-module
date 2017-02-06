@@ -97,6 +97,7 @@ class DrupalKernel extends Kernel
         $parameters['kernel.drupal_root'] = DRUPAL_ROOT;
         $parameters['kernel.conf_path'] = conf_path();
         $parameters['kernel.conf_dir'] = basename(conf_path());
+        $parameters['kernel.secret'] = variable_get('drupal_private_key', 0);
 
         return $parameters;
     }
