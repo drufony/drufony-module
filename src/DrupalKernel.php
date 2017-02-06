@@ -16,7 +16,7 @@ class DrupalKernel extends Kernel
      * collected separately, because they need to be processed last, so as to be
      * able to override services from application service providers.
      *
-     * @var array
+     * @var array[]
      */
     protected $serviceYamls;
 
