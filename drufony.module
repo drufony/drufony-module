@@ -8,18 +8,7 @@
  * Implements hook_boot().
  */
 function drufony_boot() {
-  require_once DRUPAL_ROOT . '/../vendor/autoload.php';
-  if (!class_exists('Drufony', false)) {
-    class_alias('Drupal\\drufony\\Drufony', 'Drufony');
-  }
-
-  $class = variable_get('drufony_kernel_class', 'Drupal\\drufony\\DrupalKernel');
-
-  /** @var \Symfony\Component\HttpKernel\KernelInterface $kernel */
-  $kernel = new $class('prod', false);
-  $kernel->boot();
-  $container = $kernel->getContainer();
-  Drufony::setContainer($container);
+  Drufony\boot();
 }
 
 /**

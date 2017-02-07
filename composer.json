@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "Drupal\\drufony\\": "src//"
-        }
+        },
+        "files": ["src/functions.php"]
     },
     "require": {
         "bangpound/composer-constants": "^1.0",
