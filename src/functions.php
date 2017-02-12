@@ -38,7 +38,7 @@ function get_environment($varname = 'AH_SITE_ENVIRONMENT', $default = 'local')
  *
  * @return boolean
  */
-function get_debug($varname = 'AH_NON_PRODUCTION', $default = true)
+function get_debug($varname = 'AH_PRODUCTION', $default = true)
 {
-    return (bool) (getenv($varname) ?: $default);
+    return getenv($varname) ? false : $default;
 }
