@@ -28,7 +28,7 @@ function boot()
  *
  * @return string
  */
-function get_environment($varname = 'AH_SITE_ENVIRONMENT', $default = 'dev')
+function get_environment($varname = 'AH_SITE_ENVIRONMENT', $default = 'local')
 {
     return getenv($varname) ?: $default;
 }
