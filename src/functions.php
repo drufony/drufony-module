@@ -2,7 +2,7 @@
 
 namespace Drufony;
 
-use Drufony as StaticHelper;
+use Drufony;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -17,8 +17,28 @@ function boot()
     $class = variable_get('drufony_kernel_class', 'Drupal\\drufony\\DrupalKernel');
 
     /** @var KernelInterface $kernel */
-    $kernel = new $class('prod', false);
+    $kernel = new $class(get_environment(), get_debug());
     $kernel->boot();
     $container = $kernel->getContainer();
-    StaticHelper::setContainer($container);
+    Drufony::setContainer($container);
+}
+
+/**
+ * Kernel environment is derived from Acquia environment with 'dev' as default.
+ *
+ * @return string
+ */
+function get_environment($varname = 'AH_SITE_ENVIRONMENT', $default = 'dev')
+{
+    return getenv($varname) ?: $default;
+}
+
+/**
+ * Kernel debug is true unless this is the production environment.
+ *
+ * @return boolean
+ */
+function get_debug($varname = 'AH_NON_PRODUCTION', $default = true)
+{
+    return (bool) (getenv($varname) ?: $default);
 }
