@@ -54,7 +54,7 @@ class Drufony
     /**
      * Returns the currently active global container.
      *
-     * @return ContainerInterface|null
+     * @return ContainerInterface
      *
      * @throws RuntimeException
      */
