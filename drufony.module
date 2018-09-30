@@ -20,19 +20,21 @@ function drufony_flush_caches() {
     $paths[] = Drufony::getContainer()->getParameter('kernel.cache_dir');
   }
 
-  foreach ($paths as $path) {
-    if (is_dir($path)) {
-      $dir = dir($path);
-      while (($entry = $dir->read()) !== FALSE) {
-        if ($entry === '.' || $entry === '..') {
-          continue;
+  register_shutdown_function(function ($paths) {
+    foreach ($paths as $path) {
+      if (is_dir($path)) {
+        $dir = dir($path);
+        while (($entry = $dir->read()) !== FALSE) {
+          if ($entry === '.' || $entry === '..') {
+            continue;
+          }
+          $entry_path = $dir->path . DIRECTORY_SEPARATOR . $entry;
+          file_unmanaged_delete_recursive($entry_path);
         }
-        $entry_path = $dir->path . DIRECTORY_SEPARATOR . $entry;
-        file_unmanaged_delete_recursive($entry_path);
+        $dir->close();
       }
-      $dir->close();
     }
-  }
+  }, $paths);
   return array();
 }
 
