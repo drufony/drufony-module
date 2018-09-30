@@ -17,7 +17,7 @@ function boot()
     $class = variable_get('drufony_kernel_class', 'Drupal\\drufony\\DrupalKernel');
 
     /** @var KernelInterface $kernel */
-    $kernel = new $class(get_environment(), get_debug());
+    $kernel = new $class($_SERVER['APP_ENV'] ?? get_environment(), $_SERVER['APP_DEBUG'] ?? get_debug());
     $kernel->boot();
     $container = $kernel->getContainer();
     Drufony::setContainer($container);
@@ -28,17 +28,17 @@ function boot()
  *
  * @return string
  */
-function get_environment($varname = 'AH_SITE_ENVIRONMENT', $default = 'local')
+function get_environment($varname = 'AH_SITE_ENVIRONMENT', $default = 'dev')
 {
-    return getenv($varname) ?: $default;
+    return getenv($varname) ? 'prod' : $default;
 }
 
 /**
- * Kernel debug is true unless this is the production environment.
+ * Kernel debug is true unless this is the test or prod environments.
  *
- * @return boolean
+ * @return bool
  */
-function get_debug($varname = 'AH_PRODUCTION', $default = true)
+function get_debug($varname = 'AH_SITE_ENVIRONMENT', $default = true)
 {
-    return getenv($varname) ? false : $default;
+    return getenv($varname) === 'test' || getenv($varname) === 'prod' ? false : $default;
 }
