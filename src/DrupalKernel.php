@@ -21,6 +21,11 @@ class DrupalKernel extends Kernel
     protected $serviceYamls;
 
     /**
+     * @var string
+     */
+    protected $name;
+
+    /**
      * Returns an array of bundles to register.
      *
      * @return \Symfony\Component\HttpKernel\Bundle\BundleInterface[] An array of bundle instances.
