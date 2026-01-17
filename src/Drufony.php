@@ -2,8 +2,7 @@
 
 namespace Drupal\drufony;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\Exception\RuntimeException;
+use Psr\Container\ContainerInterface;
 
 /**
  * Static Service Container wrapper.

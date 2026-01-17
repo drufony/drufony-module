@@ -3,7 +3,10 @@
 namespace Drufony;
 
 use Drufony;
-use Symfony\Component\HttpKernel\KernelInterface;
+use Drupal\drufony_monolog\MonologServiceProvider;
+use Drupal\electronicintifada\ElectronicIntifadaServiceProvider;
+use Pimple\Container;
+use Pimple\Psr11;
 
 /**
  * Boots the Symfony kernel and sets static container.
@@ -14,12 +17,21 @@ function boot()
         class_alias('Drupal\\drufony\\Drufony', 'Drufony');
     }
 
-    $class = variable_get('drufony_kernel_class', 'Drupal\\drufony\\DrupalKernel');
+    $c = new Container([
+        'env' => $_SERVER['APP_ENV'] ?? get_environment(),
+        'debug' => $_SERVER['APP_DEBUG'] ?? get_debug(),
+        'kernel.logs_dir' => DRUPAL_ROOT .'/../var/logs',
+    ]);
+    $c->register(new MonologServiceProvider(), [
+        'monolog.logfile' => 'php://stderr',
+    ]);
+    $c->register(new Drufony\Bridge\Pimple\TwigServiceProvider(), [
+        'twig.options' => ['autoescape' => false],
+    ]);
+    $c->register(new ElectronicIntifadaServiceProvider());
 
-    /** @var KernelInterface $kernel */
-    $kernel = new $class($_SERVER['APP_ENV'] ?? get_environment(), $_SERVER['APP_DEBUG'] ?? get_debug());
-    $kernel->boot();
-    $container = $kernel->getContainer();
+    $container = new Psr11\Container($c);
+
     Drufony::setContainer($container);
 }
 

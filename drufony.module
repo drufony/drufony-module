@@ -17,7 +17,7 @@ function drufony_boot() {
 function drufony_flush_caches() {
   $paths = array('var://');
   if (Drufony::hasContainer()) {
-    $paths[] = Drufony::getContainer()->getParameter('kernel.cache_dir');
+    $paths[] = Drufony::getContainer()->get('kernel.logs_dir');
   }
 
   register_shutdown_function(function ($paths) {
